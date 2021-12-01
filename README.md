@@ -1,16 +1,30 @@
+# Summary
 Small, single-purpose, stand-alone KoLmafia scripts written in ASH. Some were their own projects for a time, but now are consolidated here for simplicity sake.
 
-# c2t_advent
+Can be installed via the KoLmafia CLI:
+* `svn checkout https://github.com/c2talon/c2t_kol_scripts/branches/master/kolmafia/`
+
+### Table of Contents
+* [c2t_advent](#c2t_advent)
+* [c2t_capeMe](#c2t_capeme)
+* [c2t_cartographyHunt](#c2t_cartographyhunt)
+* [c2t_cast](#c2t_cast)
+* [c2t_harvest_battery](#c2t_harvest_battery)
+* [c2t_lprom](#c2t_lprom)
+* [c2t_mapgrim](#c2t_mapgrim)
+* [c2t_shrugall](#c2t_shrugall)
+* [c2t_stache_tracker](#c2t_stache_tracker)
+
+
+## c2t_advent
 
 Meant to be added to a breakfast script, or something similar, to automatically acquire things from the advent calendar and factory during crimbo.
 
-# c2t_capeMe
+## c2t_capeMe
 
 Kolmafia script that is a wrapper for the CLI command `retrocape` to have arguments that have meaning.
 
-## Usage
-
-### CLI
+### Usage
 
 Can be used with the CLI via:
 `c2t_capeme <mus | res | lifesteal | undead | mys | stun | yr | lantern | mox | delevel | sleaze | crit gun>`
@@ -30,11 +44,11 @@ Can be used with the CLI via:
   * `sleaze` will grant a skill that deals sleaze damage
   * `crit gun` will grant a skill that auto-crits if wielding a gun
 
-# c2t_cartographyHunt
+## c2t_cartographyHunt
 
 Kolmafia function to handle the choice adventure from the Map the Monsters skill, leaving the player in the combat.
 
-## Usage
+### Usage
 
 `import` this script to use its function to handle the choice adventure for the Map the Monsters skill. This will leave the player in the combat with the desired monster if all goes well.
 
@@ -46,7 +60,7 @@ Kolmafia function to handle the choice adventure from the Map the Monsters skill
 * aborts in the non-combat adventure if the `loc` and `mon` pair is invalid
 * aborts if something other than correct non-combat adventure is encountered, such as a wanderer or superlikely
 
-# c2t_cast
+## c2t_cast
 
 Kolmafia script to multi-cast blood spells or cheat codes, or to burn all health on blood spells or burn all charges on the Powerful Glove on a cheat code. This script is the successor to `c2t_burn`.
 
@@ -59,9 +73,9 @@ List of skills supported:
 * CHEAT CODE: Invisible Avatar
 * CHEAT CODE: Triple Size
 
-## Usage
+### Usage
 
-### CLI
+#### CLI
 
 Can be used with the CLI via:
 `c2t_cast [casts] <bubble | bond | frenzy | triple | invisible | invis>`
@@ -72,7 +86,7 @@ Can be used with the CLI via:
 * `triple` will cast Triple Size using Powerful Glove charges
 * `invisible` or `invis` will cast Invisible Avatar using Powerful Glove charges
 
-### Functions
+#### Functions
 
 Functions within can be called via another script when `import`ed. Each of these will return `true` if it cast something at least 1 time.
 
@@ -82,11 +96,11 @@ Functions within can be called via another script when `import`ed. Each of these
 `boolean c2t_cast(int num,skill spell)`
 * This is for multi-casting a blood spell or cheat code, where `spell` is the skill to use and `num` is the times to use it. Ex: `c2t_cast(2,$skill[CHEAT CODE: Triple Size])`
 
-# c2t_harvest_battery
+## c2t_harvest_battery
 
 Simply harvests batteries from the power plant.
 
-# c2t_lprom
+## c2t_lprom
 
 Kolmafia script to fully and automatically use the warbear LP-ROM to make all the recordings. It uses magical sausages as fuel, but can also use mafia's built-in method for MP recovery (untested). Only works for accordion thiefs with their ability to make 20-turn recordings. 10-turn recordings by other classes are not supported with this.
 
@@ -105,22 +119,22 @@ First, `import` the function into a script. The following function will be avail
 Optionally, it can be called from the CLI simply using its script name, though only with using sausages as fuel, via:
 * `c2t_lprom`
 
-# c2t_mapgrim
+## c2t_mapgrim
 
 Kolmafia script to evenly acquire synthetic dog hair pills and distention pills from using maps of safety shelter grimace prime.
 
-# c2t_shrugall
+## c2t_shrugall
 
 Kolmafia script to remove all active effects that are removeable from the player. Mostly useful for PvP.
 
-# c2t_stache_tracker
+## c2t_stache_tracker
 
 Rudimentary tracking of buffs the Daylight Shavings Helmet doles out. It tracks and stores what the last buff it detect from the helmet, and as well as what the next buff should be.
 
 Warning: the tracking will fall apart if you manipulate your buffs in such a way as to have 2 or more non-sequential buffs.
 
 ### Usage
-This is meant to be used in a post-adventure script that runs after every adventure.
+This is meant to be included in a post-adventure script that runs after every adventure.
 
 It can either be `import`ed to a script with which the function `c2t_stacheTracker()` can be used to update properties. Or it can be ran from the CLI via `c2t_stache_tracker` to do the same.
 
