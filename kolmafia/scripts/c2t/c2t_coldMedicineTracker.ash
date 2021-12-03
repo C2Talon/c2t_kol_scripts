@@ -1,24 +1,24 @@
-//c2t coldCabinetTracker
+//c2t coldMedicineTracker
 //c2t
 
 since r25965;
 
-//simply gets the list of items offered by the cold medicine cabinet and puts them into the property `c2t_coldCabinetItems`
+//simply gets the list of items offered by the cold medicine cabinet and puts them into the property `_c2t_coldMedicineItems`
 
-//`c2t_coldCabinetItems` is arraged based on the choice order in the adventure. Example:
+//`_c2t_coldMedicineItems` is arraged based on the choice order in the adventure. Example:
 //"ice crown,frozen tofu pop,Doc's Fortifying Wine,anti-odor cream,Fleshazole&trade;"
 
 
 //`import` this script to use this function to update the property
-void c2t_coldCabinetTracker();
+void c2t_coldMedicineTracker();
 
 //running from CLI will also update the property
-void main() c2t_coldCabinetTracker();
+void main() c2t_coldMedicineTracker();
 
-void c2t_coldCabinetTracker() {
+void c2t_coldMedicineTracker() {
 	int cooldown = get_property("_nextColdMedicineConsult").to_int();
 	int consults = get_property("_coldMedicineConsults").to_int();
-	string prop = "c2t_coldCabinetItems";
+	string prop = "_c2t_coldMedicineItems";
 	buffer page;
 	string out;
 

@@ -9,7 +9,7 @@ Can be installed via the KoLmafia CLI:
 * [c2t_capeMe](#c2t_capeme)
 * [c2t_cartographyHunt](#c2t_cartographyhunt)
 * [c2t_cast](#c2t_cast)
-* [c2t_coldCabinetTracker](#c2t_coldcabinettracker)
+* [c2t_coldMedicineTracker](#c2t_coldmedicinetracker)
 * [c2t_harvest_battery](#c2t_harvest_battery)
 * [c2t_lprom](#c2t_lprom)
 * [c2t_mapgrim](#c2t_mapgrim)
@@ -97,19 +97,19 @@ Functions within can be called via another script when `import`ed. Each of these
 `boolean c2t_cast(int num,skill spell)`
 * This is for multi-casting a blood spell or cheat code, where `spell` is the skill to use and `num` is the times to use it. Ex: `c2t_cast(2,$skill[CHEAT CODE: Triple Size])`
 
-## c2t_coldCabinetTracker
+## c2t_coldMedicineTracker
 
-Simply gets the list of items offered by the cold medicine cabinet and puts them into the property `c2t_coldCabinetItems`.
+Simply gets the list of items offered by the cold medicine cabinet and puts them into the property `_c2t_coldMedicineItems`.
 
-`c2t_coldCabinetItems` is arraged based on the choice order in the adventure. Example:
+`_c2t_coldMedicineItems` is arraged based on the choice order in the adventure. Example:
 * "ice crown,frozen tofu pop,Doc's Fortifying Wine,anti-odor cream,Fleshazole&trade;"
 
 ### Usage
 
 Can be used on the CLI to update the property if the cabinet has items listed.
 
-If `imported` into a script, the following function can be used to update the property
-* `void c2t_coldCabinetTracker()`
+If `import`ed into a script, the following function can be used to update the property
+* `void c2t_coldMedicineTracker()`
 
 ## c2t_harvest_battery
 
