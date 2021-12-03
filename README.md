@@ -108,12 +108,8 @@ Simply gets the list of items offered by the cold medicine cabinet and puts them
 
 Can be used on the CLI to update the property if the cabinet has items listed.
 
-If `imported` into a script, the following function can be used to update the property:
-* `void c2t_coldCabinetTracker(boolean autoExit)`
-  * `autoExit` is optional, but will default to `true`
-    * if `autoExit` is `true`, the choice adventure will be exited automatically at the end of the function
-    * if `autoExit` is `false`, the function will leave you in the choice adventure and you will have to exit it yourself. In this way, you can select an item from the options once the property is updated to grab a specific item once it is availabe without having to reenter the choice adventure, for example.
-
+If `imported` into a script, the following function can be used to update the property
+* `void c2t_coldCabinetTracker()`
 
 ## c2t_harvest_battery
 
