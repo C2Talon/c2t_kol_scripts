@@ -9,11 +9,12 @@ Can be installed via the KoLmafia CLI:
 * [c2t_capeMe](#c2t_capeme)
 * [c2t_cartographyHunt](#c2t_cartographyhunt)
 * [c2t_cast](#c2t_cast)
+* [c2t_coldCabinetTracker](#c2t_coldcabinettracker)
 * [c2t_harvest_battery](#c2t_harvest_battery)
 * [c2t_lprom](#c2t_lprom)
 * [c2t_mapgrim](#c2t_mapgrim)
 * [c2t_shrugall](#c2t_shrugall)
-* [c2t_stache_tracker](#c2t_stache_tracker)
+* [c2t_stacheTracker](#c2t_stachetracker)
 
 
 ## c2t_advent
@@ -96,6 +97,24 @@ Functions within can be called via another script when `import`ed. Each of these
 `boolean c2t_cast(int num,skill spell)`
 * This is for multi-casting a blood spell or cheat code, where `spell` is the skill to use and `num` is the times to use it. Ex: `c2t_cast(2,$skill[CHEAT CODE: Triple Size])`
 
+## c2t_coldCabinetTracker
+
+Simply gets the list of items offered by the cold medicine cabinet and puts them into the property `c2t_coldCabinetItems`.
+
+`c2t_coldCabinetItems` is arraged based on the choice order in the adventure. Example:
+* "ice crown,frozen tofu pop,Doc's Fortifying Wine,anti-odor cream,Fleshazole&trade;"
+
+### Usage
+
+Can be used on the CLI to update the property if the cabinet has items listed.
+
+If `imported` into a script, the following function can be used to update the property:
+* `void c2t_coldCabinetTracker(boolean autoExit)`
+  * `autoExit` is optional, but will default to `true`
+    * if `autoExit` is `true`, the choice adventure will be exited automatically at the end of the function
+    * if `autoExit` is `false`, the function will leave you in the choice adventure and you will have to exit it yourself. In this way, you can select an item from the options once the property is updated to grab a specific item once it is availabe without having to reenter the choice adventure, for example.
+
+
 ## c2t_harvest_battery
 
 Simply harvests batteries from the power plant.
@@ -127,7 +146,7 @@ Kolmafia script to evenly acquire synthetic dog hair pills and distention pills 
 
 Kolmafia script to remove all active effects that are removeable from the player. Mostly useful for PvP.
 
-## c2t_stache_tracker
+## c2t_stacheTracker
 
 Rudimentary tracking of buffs the Daylight Shavings Helmet doles out. It tracks and stores what the last buff it detect from the helmet, and as well as what the next buff should be.
 
@@ -136,7 +155,7 @@ Warning: the tracking will fall apart if you manipulate your buffs in such a way
 ### Usage
 This is meant to be included in a post-adventure script that runs after every adventure.
 
-It can either be `import`ed to a script with which the function `c2t_stacheTracker()` can be used to update properties. Or it can be ran from the CLI via `c2t_stache_tracker` to do the same.
+It can either be `import`ed to a script with which the function `c2t_stacheTracker()` can be used to update properties. Or it can be ran from the CLI via `c2t_stacheTracker` to do the same.
 
 Properties this script uses that can be referenced in other scripts:
 * `c2t_stacheLast` &mdash; contains the name of the last buff obtained
