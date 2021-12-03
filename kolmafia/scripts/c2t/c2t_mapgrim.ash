@@ -34,11 +34,10 @@ boolean c2t_mapgrim() {
 		}
 
 		//juggle choices to equalise the amount you have
-		if (get_property('choiceAdventure536').to_int() == 1 && available_amount($item[synthetic dog hair pill]) <= available_amount($item[distention pill]))
-			set_property('choiceAdventure536','2');
-		else if (get_property('choiceAdventure536').to_int() == 2 && available_amount($item[synthetic dog hair pill]) > available_amount($item[distention pill]))
+		if (available_amount($item[synthetic dog hair pill]) > available_amount($item[distention pill]))
 			set_property('choiceAdventure536','1');
-
+		else
+			set_property('choiceAdventure536','2');
 		use(1,it);
 	}
 
