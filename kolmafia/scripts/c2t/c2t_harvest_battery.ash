@@ -18,9 +18,6 @@ void main() {
 		while (match.find())
 			visit_url(`choice.php?pwd&whichchoice=1448&option=1&pp={match.group(1)}`,true,true);
 		print("Should be finished harvesting batteries.","blue");
-
-		//make sure mafia doesn't think we're stuck in the choice adventure
-		visit_url('main.php');
 	}
 	else
 		print("Was not able to enter the choice adventure to harvest batteries.","red");
