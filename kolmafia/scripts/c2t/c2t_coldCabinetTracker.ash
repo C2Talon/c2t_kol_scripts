@@ -27,6 +27,9 @@ void c2t_coldCabinetTracker(boolean autoExit) {
 	buffer page;
 	string out;
 
+	if (!(get_campground() contains $item[cold medicine cabinet]))
+		return;
+
 	if (total_turns_played() < cooldown)
 		return;
 	/*tracking of consults is broken in 25965, so uncomment this if/when it's fixed
