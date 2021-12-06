@@ -8,15 +8,18 @@ since r25967;
 //`_c2t_coldMedicineItems` is arraged based on the choice order in the adventure. Example:
 //"ice crown,frozen tofu pop,Doc's Fortifying Wine,anti-odor cream,Fleshazole&trade;"
 
+//note: this process leaves you in the choice adventure (to make a choice if you want), but does not explicitly need to be exited before doing other things
+
 
 //`import` this script to use this function to update the property
-void c2t_coldMedicineTracker();
+//returns `true` if the property was updated properly (but not necessarily changed), which doubles as meaning an item can be taken now
+boolean c2t_coldMedicineTracker();
 
 //running this script from the CLI will also update the property
 void main() c2t_coldMedicineTracker();
 
 
-void c2t_coldMedicineTracker() {
+boolean c2t_coldMedicineTracker() {
 	int cooldown = get_property("_nextColdMedicineConsult").to_int();
 	int consults = get_property("_coldMedicineConsults").to_int();
 	string prop = "_c2t_coldMedicineItems";
@@ -26,11 +29,11 @@ void c2t_coldMedicineTracker() {
 
 	//check if the cabinet is available
 	if (!(get_campground() contains $item[cold medicine cabinet]))
-		return;
+		return false;
 	if (total_turns_played() < cooldown)
-		return;
+		return false;
 	if (consults >= 5)
-		return;
+		return false;
 
 	//enter choice and snag stuff needed
 	page = visit_url('campground.php?action=workshed');
@@ -40,7 +43,7 @@ void c2t_coldMedicineTracker() {
 
 	//check choice adventure number
 	if (cNum[0].to_int() != 1455)
-		return;
+		return false;
 
 	//build the string
 	for i from 0 to count(cOpt)-2
@@ -48,5 +51,6 @@ void c2t_coldMedicineTracker() {
 
 	//send it
 	set_property(prop,out);
+	return true;
 }
 

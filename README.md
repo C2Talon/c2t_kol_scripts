@@ -102,14 +102,16 @@ Functions within can be called via another script when `import`ed. Each of these
 Simply gets the list of items offered by the cold medicine cabinet and puts them into the property `_c2t_coldMedicineItems`.
 
 `_c2t_coldMedicineItems` is arraged based on the choice order in the adventure. Example:
-* "ice crown,frozen tofu pop,Doc's Fortifying Wine,anti-odor cream,Fleshazole&trade;"
+* `ice crown,frozen tofu pop,Doc's Fortifying Wine,anti-odor cream,Fleshazole&trade;`
+
+__Note:__ this process leaves you in the choice adventure (to make a choice if you want), but does not explicitly need to be exited before doing other things.
 
 ### Usage
 
 Can be used on the CLI to update the property if the cabinet has items listed.
 
-If `import`ed into a script, the following function can be used to update the property
-* `void c2t_coldMedicineTracker()`
+If `import`ed into a script, the following function can be used to update the property. Returns `true` if the property was updated properly (but not necessarily changed), which doubles as meaning an item can be taken now.
+* `boolean c2t_coldMedicineTracker()`
 
 ## c2t_harvest_battery
 
@@ -146,7 +148,7 @@ Kolmafia script to remove all active effects that are removeable from the player
 
 Rudimentary tracking of buffs the Daylight Shavings Helmet doles out. It tracks and stores what the last buff it detect from the helmet, and as well as what the next buff should be.
 
-Warning: the tracking will fall apart if you manipulate your buffs in such a way as to have 2 or more non-sequential buffs.
+__Warning:__ the tracking will fall apart if you manipulate your buffs in such a way as to have 2 or more non-sequential buffs.
 
 ### Usage
 This is meant to be included in a post-adventure script that runs after every adventure.
