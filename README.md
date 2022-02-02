@@ -147,7 +147,7 @@ Puts the player in combat with a monster contained within the combat lover's loc
 
 Function: `boolean c2t_reminisce(monster mon)`, where `mon` is monster to fight. Returns `true` if the monster is a valid target, meaning you should be in combat with it.
 
-CLI usage example: `c2t_reminisce sausage goblin`
+CLI usage example: `c2t_reminisce sausage goblin` to be put in combat with a sausage goblin from the locket. A monster's ID number should also work to disambiguate same-named monsters.
 
 ## c2t_shrugall
 

@@ -5,9 +5,11 @@
 
 
 //tries to enter combat with monster `mon`
+//returns `true` if successful
 boolean c2t_reminisce(monster mon);
 
-//for working on cli
+//for the cli
+//`arg` is name of monster to fight from the locket. A monster's ID number should also work to disambiguate same-named monsters.
 void main (string arg) {
 	if (!c2t_reminisce(arg.to_monster())) {
 		print(`Combat was not entered with {arg.to_monster()}`,"red");
@@ -25,7 +27,7 @@ boolean c2t_reminisce(monster mon) {
 		err += " Invalid monster.";
 	if (page.contains_text("You don't want to reminisce any more today."))
 		err += " Out of locket uses.";
-	if (!page.contains_text('<b>Reminiscing About Those Monsters You Fought</b>'))
+	else if (!page.contains_text('<b>Reminiscing About Those Monsters You Fought</b>'))
 		err += " Don't own a combat lover's locket?";
 	if (page.contains_text('There are no photos in your locket that you wish to reminisce about.'))
 		err += " Need to add monsters to the locket first.";
