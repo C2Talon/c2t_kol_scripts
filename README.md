@@ -13,6 +13,7 @@ Can be installed via the KoLmafia CLI:
 * [c2t_harvest_battery](#c2t_harvest_battery)
 * [c2t_lprom](#c2t_lprom)
 * [c2t_mapgrim](#c2t_mapgrim)
+* [c2t_reminisce](#c2t_reminisce)
 * [c2t_shrugall](#c2t_shrugall)
 * [c2t_stacheTracker](#c2t_stachetracker)
 
@@ -139,6 +140,14 @@ Optionally, it can be called from the CLI simply using its script name, though o
 ## c2t_mapgrim
 
 Kolmafia script to evenly acquire synthetic dog hair pills and distention pills from using maps of safety shelter grimace prime.
+
+## c2t_reminisce
+
+Puts the player in combat with a monster contained within the combat lover's locket.
+
+Function: `boolean c2t_reminisce(monster mon)`, where `mon` is monster to fight. Returns `true` if the monster is a valid target, meaning you should be in combat with it.
+
+CLI usage example: `c2t_reminisce sausage goblin`
 
 ## c2t_shrugall
 
