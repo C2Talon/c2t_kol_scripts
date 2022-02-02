@@ -23,6 +23,8 @@ boolean c2t_reminisce(monster mon) {
 
 	if (mon == $monster[none])
 		err += " Invalid monster.";
+	if (page.contains_text("You don't want to reminisce any more today."))
+		err += " Out of locket uses.";
 	if (!page.contains_text('<b>Reminiscing About Those Monsters You Fought</b>'))
 		err += " Don't own a combat lover's locket?";
 	if (page.contains_text('There are no photos in your locket that you wish to reminisce about.'))
