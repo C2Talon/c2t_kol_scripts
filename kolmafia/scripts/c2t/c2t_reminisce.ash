@@ -10,15 +10,17 @@ boolean c2t_reminisce(monster mon);
 
 //for the cli
 //`arg` is name of monster to fight from the locket. A monster's ID number should also work to disambiguate same-named monsters.
-void main (string arg) {
-	if (!c2t_reminisce(arg.to_monster())) {
-		print(`Combat was not entered with {arg.to_monster()}`,"red");
+void main (string monsterNameOrId) {
+	monster mon = monsterNameOrId.to_monster();
+	if (!c2t_reminisce(mon)) {
+		print(`Combat was not entered with {mon}`,"red");
 		return;
 	}
-	print(`Should be in combat with {arg.to_monster()}`,"blue");
+	print(`Should be in combat with {mon}`,"blue");
 }
 
 boolean c2t_reminisce(monster mon) {
+	string monId = mon.to_int().to_string();
 	buffer page = visit_url('inventory.php?reminisce=1',false,true);
 	string[int] choices = xpath(page,'//form[@action="choice.php"]//option/@value');
 	string err = "";
@@ -40,7 +42,7 @@ boolean c2t_reminisce(monster mon) {
 
 	//mon check
 	foreach i,x in choices
-		if (x.to_monster() == mon) {
+		if (x == monId) {
 			visit_url(`choice.php?pwd&whichchoice=1463&option=1&mid={x}`,true,true);
 			return true;
 		}
