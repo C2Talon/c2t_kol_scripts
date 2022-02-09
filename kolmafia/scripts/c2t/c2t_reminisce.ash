@@ -29,7 +29,6 @@ boolean c2t_reminisce(monster mon) {
 	string monId = mon.to_int().to_string();
 	string[int] fought = split_string(get_property("_locketMonstersFought"),",");
 	buffer page;
-	string[int] choices;
 	string err = "";
 
 	//what mafia knows
@@ -37,14 +36,10 @@ boolean c2t_reminisce(monster mon) {
 		err += " Invalid monster.";
 	if (my_adventures() == 0)
 		err += " No adventures to reminisce.";
-	if (available_amount($item[combat lover\'s locket]) == 0)
+	if (available_amount($item[combat lover's locket]) == 0)
 		err += " Don't own a combat lover's locket?";
 	if (fought.count() >= 3)
 		err += " Out of locket uses.";
-	foreach i,x in fought if (x == monId) {
-		err += ` "{mon}" already fought today.`;
-		break;
-	}
 	if (err != "") {
 		_c2t_reminisce_error(err);
 		return false;
@@ -52,7 +47,6 @@ boolean c2t_reminisce(monster mon) {
 
 	//locket choice adventure
 	page = visit_url('inventory.php?reminisce=1',false,true);
-	choices = xpath(page,'//form[@action="choice.php"]//option/@value');
 
 	if (page.contains_text("You don't want to reminisce any more today."))
 		err += " Out of locket uses.";
@@ -67,14 +61,10 @@ boolean c2t_reminisce(monster mon) {
 		return false;
 	}
 
-	//monster check and choice submission
-	foreach i,x in choices if (x == monId) {
-		page = visit_url(`choice.php?pwd&whichchoice=1463&option=1&mid={x}`,true,true);
-		if (page.contains_text(`<!-- MONSTERID: {x} -->`))
-			return true;
-		_c2t_reminisce_error(" The monster was detected in the locket, but combat was not entered?");
-		return false;
-	}
+	//combat check and choice submission
+	page = visit_url(`choice.php?pwd&whichchoice=1463&option=1&mid={monId}`,true,true);
+	if (page.contains_text(`<!-- MONSTERID: {monId} -->`))
+		return true;
 
 	_c2t_reminisce_error(` "{mon}" not in the selection pool.`);
 	return false;
