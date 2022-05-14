@@ -8,12 +8,10 @@ either add this script as the post-adventure script or call it inside a post-adv
 warning: the tracking will fall apart if you manipulate your buffs in such a way as to have 2 or more non-sequential buffs
 
 properties this uses:
-"c2t_stacheAscension" -- simply tracks if this script has been run in the current ascension to reset the trackers
 "c2t_stacheLast" -- contains the name of the last buff obtained
 "c2t_stacheNext" -- contains the name of the next buff that is expected
 -=-+-=-+-=-+-=-*/
 
-string propAsc = "c2t_stacheAscension";
 string propNext = "c2t_stacheNext";
 string propLast = "c2t_stacheLast";
 
@@ -43,36 +41,21 @@ for i from 0 to 10 {
 }
 
 effect c2t_nextStache(effect eff) {
+	if (eff == $effect[none])
+		return order[1];
 	if (index contains eff)
 		return order[(index[eff] + 1) % 11];
 	return $effect[none];
 }
 
-effect c2t_findStache() {
-	foreach i,eff in order {
-		if (have_effect(eff) > 0) {
-			if (i == 10 || have_effect(order[i+1]) == 0)
-				return eff;
-			else
-				return order[i+1];
-		}
-	}
-	return $effect[none];
-}
+effect c2t_findStache() return get_property("lastBeardBuff").to_effect();
 
 void c2t_stacheTracker() {
 	effect last,next;
-	if (get_property(propAsc).to_int() != my_ascensions()) {
-		set_property(propAsc,my_ascensions().to_string());
-		set_property(propLast,"");
-		set_property(propNext,"");
-	}
 	last = c2t_findStache();
 	next = c2t_nextStache(last);
-	if (last != $effect[none]) {
-		set_property(propLast,last.to_string());
-		set_property(propNext,next.to_string());
-	}
+	set_property(propLast,last.to_string());
+	set_property(propNext,next.to_string());
 }
 
 void main() c2t_stacheTracker();
