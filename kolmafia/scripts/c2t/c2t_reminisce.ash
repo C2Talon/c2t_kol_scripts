@@ -21,8 +21,9 @@ void main (string monsterNameOrId) {
 	print(`Should be in combat with "{mon}".`,"blue");
 }
 
-void _c2t_reminisce_error(string err) {
+boolean _c2t_reminisce_error(string err) {
 	print(`c2t_reminisce error:{err}`,"red");
+	return false;
 }
 
 boolean c2t_reminisce(monster mon) {
@@ -37,7 +38,7 @@ boolean c2t_reminisce(monster mon) {
 		err += " Invalid monster.";
 	if (my_adventures() == 0)
 		err += " No adventures to reminisce.";
-	if (available_amount($item[combat lover\'s locket]) == 0)
+	if (available_amount($item[combat lover's locket]) == 0)
 		err += " Don't own a combat lover's locket?";
 	if (fought.count() >= 3)
 		err += " Out of locket uses.";
@@ -45,10 +46,8 @@ boolean c2t_reminisce(monster mon) {
 		err += ` "{mon}" already fought today.`;
 		break;
 	}
-	if (err != "") {
-		_c2t_reminisce_error(err);
-		return false;
-	}
+	if (err != "")
+		return _c2t_reminisce_error(err);
 
 	//locket choice adventure
 	page = visit_url('inventory.php?reminisce=1',false,true);
@@ -62,21 +61,17 @@ boolean c2t_reminisce(monster mon) {
 		err += " Don't own a combat lover's locket?";
 	if (page.contains_text('There are no photos in your locket that you wish to reminisce about.'))
 		err += " Need to add monsters to the locket first.";
-	if (err != "") {
-		_c2t_reminisce_error(err);
-		return false;
-	}
+	if (err != "")
+		return _c2t_reminisce_error(err);
 
 	//monster check and choice submission
 	foreach i,x in choices if (x == monId) {
 		page = visit_url(`choice.php?pwd&whichchoice=1463&option=1&mid={x}`,true,true);
 		if (page.contains_text(`<!-- MONSTERID: {x} -->`))
 			return true;
-		_c2t_reminisce_error(" The monster was detected in the locket, but combat was not entered?");
-		return false;
+		return _c2t_reminisce_error(" The monster was detected in the locket, but combat was not entered?");
 	}
 
-	_c2t_reminisce_error(` "{mon}" not in the selection pool.`);
-	return false;
+	return _c2t_reminisce_error(` "{mon}" not in the selection pool.`);
 }
 
