@@ -2,7 +2,7 @@
 Small, single-purpose, stand-alone KoLmafia scripts written in ASH. Some were their own projects for a time, but now are consolidated here for simplicity sake.
 
 Can be installed via the KoLmafia CLI:
-* `svn checkout https://github.com/c2talon/c2t_kol_scripts/branches/master/kolmafia/`
+* `git checkout https://github.com/C2Talon/c2t_kol_scripts.git master`
 
 ### Table of Contents
 * [c2t_advent](#c2t_advent)
