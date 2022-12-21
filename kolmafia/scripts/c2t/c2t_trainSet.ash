@@ -77,6 +77,10 @@ boolean c2t_trainSet(string s) {
 		doit += `&slot[{i}]={x[i]}`;
 	visit_url(doit,true,true);
 	print(`c2t_trainSet: Model train set set to {s}`,"blue");
+
+	//just in case mafia still doesn't know this can be walked away from
+	visit_url("main.php");
+
 	return true;
 }
 
