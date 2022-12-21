@@ -16,6 +16,7 @@ Can be installed via the KoLmafia CLI:
 * [c2t_reminisce](#c2t_reminisce)
 * [c2t_shrugall](#c2t_shrugall)
 * [c2t_stacheTracker](#c2t_stachetracker)
+* [c2t_trainSet](#c2t_trainset)
 
 
 ## c2t_advent
@@ -167,4 +168,15 @@ It can either be `import`ed to a script with which the function `c2t_stacheTrack
 Properties this script uses that can be referenced in other scripts:
 * `c2t_stacheLast` &mdash; contains the name of the last buff obtained
 * `c2t_stacheNext` &mdash; contains the name of the next buff that is expected
+
+## c2t_trainSet
+This is for configuring the model train set.
+
+### Usage
+
+It can either be `import`ed into a script to use the `c2t_trainSet()` function, or use on the CLI via `c2t_trainSet`.
+
+Input is a string in the form of `1,2,3,4,5,6,7,8`, where each number is a unique train set part separated by a comma. (The script itself has a list of parts numbers for reference if needed.)
+
+The function will return `true` if the train set was configured with the script. The function will return `false` on any error, but also including if the train set is not yet ready to be changed.
 
