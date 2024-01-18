@@ -152,10 +152,6 @@ boolean c2t_megg_donate(monster target) {
 		c2t_megg_writeFile(maxlist);
 	}
 
-	//target already max check
-	if (maxlist contains monstring)
-		return c2t_megg_success(`{target} already max donated`);
-
 	//some default protection against max egg redundancies for random donate
 	if (target == $monster[none]
 		&& maxlist.count() == 0)
@@ -163,6 +159,10 @@ boolean c2t_megg_donate(monster target) {
 		c2t_megg_print("couldn't read max egg list from page or data file, so protecting embezzlers at minimum");
 		maxlist[$monster[knob goblin embezzler].id.to_string()] = true;
 	}
+
+	//target already max check
+	if (maxlist contains monstring)
+		return c2t_megg_success(`{target} already max donated`);
 
 	//do the things
 	if (target != $monster[none]) {//not random donation
