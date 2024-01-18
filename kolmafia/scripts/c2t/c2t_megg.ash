@@ -79,7 +79,7 @@ void main(string args) {
 		default:
 			c2t_megg_print(`"{action}" is an invalid action`);
 		case "help":
-			print("c2t_megg <donate|extract|fight|pre|help> <monster>");
+			print("c2t_megg <donate|extract|fight|preadv|help> <monster>");
 			break;
 		case "donate":
 		case "donegg":
@@ -186,7 +186,7 @@ boolean c2t_megg_donate(monster target) {
 				page = visit_url(`choice.php?pwd&whichchoice=1517&option=1&mid={monstring}`,true,true);
 				break;
 			}
-			if (++needle > size)
+			if (++needle > size-1)
 				needle = 1;
 		} until (needle == start
 			&& roundtrip = true);
@@ -304,12 +304,12 @@ boolean c2t_megg_fight(monster target) {
 
 boolean c2t_megg_preAdv() {
 	familiar mimic = $familiar[chest mimic];
-	string prefLast = "c2t_megg_lastCheck";
+	string prefLast = "_c2t_megg_lastCheck";
 	string prefLimit = "c2t_megg_timeLimit";
 	boolean[string] maxlist;
 	buffer page;
 	int last = get_property(prefLast).to_int();
-	int limit = get_property(prefLimit).to_int() * 1000;
+	int limit = get_property(prefLimit).to_int() * 60000;
 	int now = now_to_int();
 
 	//maybe don't need to go
@@ -317,14 +317,14 @@ boolean c2t_megg_preAdv() {
 		return false;
 	if (mimic.experience < 100)
 		return false;
-	//600 seconds speed limit to start
+	//30 minutes speed limit to start
 	if (limit == 0) {
 		limit = 600000;
-		set_property(prefLimit,600);
+		set_property(prefLimit,30);
 	}
 	//don't check too often
 	if (now - last < limit)
-		return true;
+		return false;
 
 	//go
 	c2t_megg_init();
