@@ -10,6 +10,7 @@ Can be installed via the KoLmafia CLI:
 * [c2t_cartographyHunt](#c2t_cartographyhunt)
 * [c2t_cast](#c2t_cast)
 * [c2t_coldMedicineTracker](#c2t_coldmedicinetracker)
+* [c2t_fixHomemadeRobot](#c2t_fixHomemadeRobot)
 * [c2t_harvest_battery](#c2t_harvest_battery)
 * [c2t_lprom](#c2t_lprom)
 * [c2t_mapgrim](#c2t_mapgrim)
@@ -114,6 +115,10 @@ Can be used on the CLI to update the property if the cabinet has items listed.
 
 If `import`ed into a script, the following function can be used to update the property. Returns `true` if the property was updated properly (but not necessarily changed), which doubles as meaning an item can be taken now.
 * `boolean c2t_coldMedicineTracker()`
+
+## c2t_fixHomemadeRobot
+
+Attempts to fix the [homemade robot](https://kol.coldfront.net/thekolwiki/index.php/Homemade_Robot)'s tracking preference by comparing the weight Kolmafia thinks it is with the actual value from the API. Only works if the tracking preference is zero and the homemade robot is fully upgraded.
 
 ## c2t_harvest_battery
 
