@@ -6,6 +6,7 @@ Can be installed via the KoLmafia CLI:
 
 ### Table of Contents
 * [c2t_advent](#c2t_advent)
+* [c2t_apriling](#c2t_apriling)
 * [c2t_capeMe](#c2t_capeme)
 * [c2t_cartographyHunt](#c2t_cartographyhunt)
 * [c2t_cast](#c2t_cast)
@@ -22,7 +23,24 @@ Can be installed via the KoLmafia CLI:
 
 ## c2t_advent
 
-Meant to be added to a breakfast script, or something similar, to automatically acquire things from the advent calendar and factory during crimbo.
+Meant to be added to a breakfast script, or something similar, to automatically acquire things from the advent calendar during crimbo.
+
+## c2t_apriling
+
+`import` to make use of functions to obtain effects and items from the [Apriling Band Helmet](https://kol.coldfront.net/thekolwiki/index.php/Conduct_the_Band):
+- `boolean c2t_apriling(effect,item,item)`
+- `boolean c2t_apriling(item,effect,item)`
+- `boolean c2t_apriling(item,item,effect)`
+- `boolean c2t_apriling(effect,item)`
+- `boolean c2t_apriling(item,effect)`
+- `boolean c2t_apriling(item,item)`
+- `boolean c2t_apriling(effect)`
+- `boolean c2t_apriling(item)`
+  - returns `true` if one or more of the effect or items obtained
+
+`import` to make use of a function to play instruments from the Apriling Band Helmet:
+- `boolean c2t_aprilingPlay(item)`
+  - returns `true` on success
 
 ## c2t_capeMe
 
