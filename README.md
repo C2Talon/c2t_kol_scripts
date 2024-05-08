@@ -15,6 +15,7 @@ Can be installed via the KoLmafia CLI:
 * [c2t_harvest_battery](#c2t_harvest_battery)
 * [c2t_lprom](#c2t_lprom)
 * [c2t_mapgrim](#c2t_mapgrim)
+* [c2t_mayam](#c2t_mayam)
 * [c2t_reminisce](#c2t_reminisce)
 * [c2t_shrugall](#c2t_shrugall)
 * [c2t_stacheTracker](#c2t_stachetracker)
@@ -164,6 +165,16 @@ Optionally, it can be called from the CLI simply using its script name, though o
 ## c2t_mapgrim
 
 Kolmafia script to evenly acquire synthetic dog hair pills and distention pills from using maps of safety shelter grimace prime.
+
+## c2t_mayam
+
+`import` to make use of the functions within your own script to get things from the [Mayam Calendar](https://kol.coldfront.net/thekolwiki/index.php/Consider_the_Calendar). All functions will return `true` if the Mayam Calendar gave something. Available functions are as follows:
+- `boolean c2t_mayam(string[4])` &mdash; input is symbols as strings in an array
+- `boolean c2t_mayam(boolean[string])` &mdash; input is plural typed constant of `$strings[]`
+- `boolean c2t_mayam(string)` &mdash; input is symbols as single string seperated by spaces
+- `boolean c2t_mayam(string,string,string,string)` &mdash; input is symbols each as their own string
+- `boolean c2t_mayam(effect)` &mdash; get specific bonus (resonance) effect
+- `boolean c2t_mayam(item)` &mdash; get specific bonus (resonance) item
 
 ## c2t_reminisce
 
