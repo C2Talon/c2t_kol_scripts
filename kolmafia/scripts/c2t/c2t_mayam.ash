@@ -22,6 +22,8 @@ boolean c2t_mayam(string s1,string s2,string s3,string s4);
 boolean c2t_mayam(effect eff);
 boolean c2t_mayam(item ite);
 
+//submit random available symbols
+boolean c2t_mayam();
 
 //--implementations--
 
@@ -56,5 +58,70 @@ boolean c2t_mayam(effect eff) {
 }
 boolean c2t_mayam(item ite) {
 	return _c2t_mayam(`resonance {ite}`);
+}
+boolean c2t_mayam() {
+	string[int] used = get_property("_mayamSymbolsUsed").split_string(",");
+	string[4] out;
+
+	//get out early if uses exhausted
+	if (used.count() >= 12)
+		return false;
+
+	string[4][int] symbol = {
+		{"yam","sword","vessel","fur","chair","eye"},
+		{"yam","lightning","bottle","wood","meat"},
+		{"yam","eyepatch","cheese","wall"},
+		{"yam","clock","explosion"},
+		};
+	int[string] prefToRing = {
+		"yam4":3,
+		"clock":3,
+		"explosion":3,
+		"yam3":2,
+		"eyepatch":2,
+		"cheese":2,
+		"wall":2,
+		"yam2":1,
+		"lightning":1,
+		"bottle":1,
+		"wood":1,
+		"meat":1,
+		"yam1":0,
+		"sword":0,
+		"vessel":0,
+		"fur":0,
+		"chair":0,
+		"eye":0,
+		};
+	boolean[4,string] available = {
+		{"yam":true,"sword":true,"vessel":true,"fur":true,"chair":true,"eye":true},
+		{"yam":true,"lightning":true,"bottle":true,"wood":true,"meat":true},
+		{"yam":true,"eyepatch":true,"cheese":true,"wall":true},
+		{"yam":true,"clock":true,"explosion":true},
+		};
+	//remove unavailable symbols
+	foreach i,x in used {
+		string temp = x.starts_with("yam") ? "yam" : x;
+		remove available[prefToRing[x],temp];
+	}
+	//make sure each ring has an option
+	for i from 0 to 3
+		if (available[i].count() == 0)
+			return false;
+	//pick random available symbols
+	for i from 0 to 3 {
+		int tries = 0;
+		repeat {
+			int temp = random(6-i);
+			if (available[i][symbol[i][temp] ])
+				out[i] = symbol[i][temp];
+		} until (out[i] != "" || tries++ > 11);
+		//really bad luck with random
+		if (out[i] == "") foreach j,x in symbol[i] if (available[i][x]) {
+			out[i] = x;
+			break;
+		}
+	}
+	return c2t_mayam(out);
 }
 

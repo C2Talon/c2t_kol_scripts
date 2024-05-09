@@ -175,6 +175,7 @@ Kolmafia script to evenly acquire synthetic dog hair pills and distention pills 
 - `boolean c2t_mayam(string,string,string,string)` &mdash; input is symbols each as their own string
 - `boolean c2t_mayam(effect)` &mdash; get specific bonus (resonance) effect
 - `boolean c2t_mayam(item)` &mdash; get specific bonus (resonance) item
+- `boolean c2t_mayam()` &mdash; use random available symbols
 
 ## c2t_reminisce
 
