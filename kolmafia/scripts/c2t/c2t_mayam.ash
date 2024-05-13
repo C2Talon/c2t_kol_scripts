@@ -67,12 +67,6 @@ boolean c2t_mayam() {
 	if (used.count() >= 12)
 		return false;
 
-	string[4][int] symbol = {
-		{"yam","sword","vessel","fur","chair","eye"},
-		{"yam","lightning","bottle","wood","meat"},
-		{"yam","eyepatch","cheese","wall"},
-		{"yam","clock","explosion"},
-		};
 	int[string] prefToRing = {
 		"yam4":3,
 		"clock":3,
@@ -104,21 +98,15 @@ boolean c2t_mayam() {
 		string temp = x.starts_with("yam") ? "yam" : x;
 		remove available[prefToRing[x],temp];
 	}
-	//make sure each ring has an option
-	for i from 0 to 3
-		if (available[i].count() == 0)
-			return false;
 	//pick random available symbols
 	for i from 0 to 3 {
-		int tries = 0;
-		repeat {
-			int temp = random(6-i);
-			if (available[i][symbol[i][temp] ])
-				out[i] = symbol[i][temp];
-		} until (out[i] != "" || tries++ > 11);
-		//really bad luck with random
-		if (out[i] == "") foreach j,x in symbol[i] if (available[i][x]) {
-			out[i] = x;
+		int size = available[i].count();
+		if (size == 0)
+			return false;
+		int pick = size == 1 ? 0 : random(size);
+		int j = -1;
+		foreach key,value in available[i] if (++j == pick) {
+			out[i] = key;
 			break;
 		}
 	}
