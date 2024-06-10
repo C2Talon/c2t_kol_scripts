@@ -3,12 +3,12 @@
 
 since r27930;//mayam resonance
 
-
 //--declarations--
 
 //mayam functions: each returns true if the mayam calendar gave something
+//symbols input as an empty string will be replaced with a random available symbol
 
-//input as symbols in map form
+//input as symbols in array or $strings[] form
 boolean c2t_mayam(string[4] symbols);
 boolean c2t_mayam(boolean[string] symbols);
 
@@ -25,6 +25,9 @@ boolean c2t_mayam(item ite);
 //submit random available symbols
 boolean c2t_mayam();
 
+//returns an array of random available symbols
+string[4] c2t_mayamRandomSymbols();
+
 //--implementations--
 
 boolean _c2t_mayam(string s) {
@@ -36,6 +39,9 @@ boolean _c2t_mayam(string s) {
 	return start != get_property(pref);
 }
 boolean c2t_mayam(string[4] symbols) {
+	string[4] fallback = c2t_mayamRandomSymbols();
+	foreach i,x in symbols if (x == "")
+		symbols[i] = fallback[i];
 	return _c2t_mayam(`rings {symbols[0]} {symbols[1]} {symbols[2]} {symbols[3]}`);
 }
 boolean c2t_mayam(boolean[string] symbols) {
@@ -60,12 +66,15 @@ boolean c2t_mayam(item ite) {
 	return _c2t_mayam(`resonance {ite}`);
 }
 boolean c2t_mayam() {
+	return c2t_mayam(c2t_mayamRandomSymbols());
+}
+string[4] c2t_mayamRandomSymbols() {
 	string[int] used = get_property("_mayamSymbolsUsed").split_string(",");
-	string[4] out;
+	string[4] out = {"yam","yam","yam","yam"};
 
 	//get out early if uses exhausted
 	if (used.count() >= 12)
-		return false;
+		return out;
 
 	int[string] prefToRing = {
 		"yam4":3,
@@ -102,7 +111,7 @@ boolean c2t_mayam() {
 	for i from 0 to 3 {
 		int size = available[i].count();
 		if (size == 0)
-			return false;
+			return out;
 		int pick = size == 1 ? 0 : random(size);
 		int j = -1;
 		foreach key,value in available[i] if (++j == pick) {
@@ -110,6 +119,6 @@ boolean c2t_mayam() {
 			break;
 		}
 	}
-	return c2t_mayam(out);
+	return out;
 }
 
