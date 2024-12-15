@@ -57,7 +57,7 @@ boolean c2t_reminisce(monster mon) {
 		err += " Out of locket uses.";
 	else if (page.contains_text("You don't have time to reminisce."))
 		err += " Not enough adventures to reminisce.";
-	else if (!page.contains_text('<b>Reminiscing About Those Monsters You Fought</b>'))
+	else if (!page.contains_text('>Reminiscing About Those Monsters You Fought</b>'))
 		err += " Don't own a combat lover's locket?";
 	if (page.contains_text('There are no photos in your locket that you wish to reminisce about.'))
 		err += " Need to add monsters to the locket first.";
